@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Create Purchase</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="formPurchase" fxLayout="column"  autocomplete="off">
+        <div formArrayName='purchaseDetail'>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    
+                        <th><mat-label>#</mat-label></th>
+                        <th><mat-label>product</mat-label></th>
+                        <th><mat-label>price</mat-label></th>
+                        <th><mat-label>amount</mat-label></th>
+                        <th><mat-label>total</mat-label></th>
+                </tr>
+                <tr *ngFor="let item of getDetail.controls; let i = index;" [formGroupName]='i'>
+                    <td>
+                        <div class="example-full-width">
+                            <mat-label class="">{{i}}</mat-label>
+
+                        </div>
+                    </td>
+                    <td>
+                        <mat-form-field  class="example-full-width" appearance="fill">
+                            <mat-label>Select Product</mat-label>
+                            <mat-select matNativeControl formControlName="id_product" (selectionChange)="selectProduct($event.value,i)">
+                              <mat-option *ngFor="let product of listProduct" value="{{product.id}}" selected>{{product.id}}-{{product.name}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-label>{{priceList[i]}}</mat-label>
+                    </td>
+                    <td>
+                        <mat-form-field  class="example-full-width" appearance="fill">   
+                            <input matInput #amount maxlength="45" min="0" type="number" (ngModelChange)="amountChange($event,i)" formControlName="amount">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-label>{{totalList[i]}}</mat-label>
+                    </td>
+                </tr>
+            </table>
+            <button class="ml-4" fxFlex="none" mat-icon-button type="button" (click)="addDetail()"  >
+                <mat-icon style=" font-size: 27px;">add</mat-icon>
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

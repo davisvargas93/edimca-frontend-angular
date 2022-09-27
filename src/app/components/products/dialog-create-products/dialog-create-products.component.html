@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Create Product</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="formProduct" fxLayout="column"  autocomplete="off">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field  class="example-full-width" appearance="fill">
+                        <mat-label>Name Product</mat-label>
+                        <input matInput #name maxlength="30" formControlName="name" >
+                        <mat-error *ngIf="formProduct.controls['price'].hasError('required')">
+                            Required
+                        </mat-error>
+                        <mat-hint align="end">{{name.value.length}} / 30</mat-hint>
+                    </mat-form-field></td>
+                <td>
+                    <mat-form-field  class="example-full-width" appearance="fill">
+                        <mat-label>Price</mat-label>
+                        <input matInput #price type="number"  formControlName="price" >
+                        <mat-error *ngIf="formProduct.controls['price'].hasError('required')">
+                            Required
+                        </mat-error>
+                    </mat-form-field></td>
+            </tr>
+        </table>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

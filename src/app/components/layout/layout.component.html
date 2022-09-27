@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  <span>
+    <button mat-button routerLink="/login">{{title}}</button>
+    <button mat-button [routerLink]="['/products']"><mat-icon>redeem</mat-icon>Products</button>
+    <button mat-button routerLink="/purcharse"><mat-icon>receipt</mat-icon>Purcharse</button>
+  </span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="/login">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
